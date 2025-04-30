@@ -89,7 +89,7 @@ export default function ElementAdder() {
   ];
 
   return (
-    <div className="bg-white rounded-md p-4 h-max w-1/4 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
+    <div className="sticky top-20 bg-white rounded-md p-4 h-max w-1/4 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]">
       <div>
         <h2 className="font-semibold">Add Form Elements</h2>
       </div>
@@ -98,7 +98,7 @@ export default function ElementAdder() {
           return (
             <button
               key={index}
-              className="flex flex-col cursor-pointer transition duration-300 ease-in-out hover:bg-gray-100 w-[calc(50%-5px)] items-center justify-center gap-2 p-4 rounded-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
+              className="flex flex-col cursor-pointer transition duration-300 ease-in-out hover:bg-purple-50 w-[calc(50%-5px)] items-center justify-center gap-2 p-4 rounded-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
             >
               {button.icon}
               <span>{button.label}</span>
