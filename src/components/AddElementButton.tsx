@@ -1,8 +1,13 @@
 import { initialQuestions } from "@/lib/utils";
 import { formAtom, FormElementType } from "@/store/formAtom";
 import { useAtom } from "jotai";
+import { ControlButton } from "./ElementAdder";
 
-export default function AddElementButton({ button }: any) {
+export default function AddElementButton({
+  button,
+}: {
+  button: ControlButton;
+}) {
   const [form, setForm] = useAtom(formAtom);
 
   const handleAddElement = (type: string) => {

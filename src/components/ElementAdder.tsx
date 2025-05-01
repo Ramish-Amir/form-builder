@@ -1,7 +1,7 @@
 import { JSX } from "react";
 import AddElementButton from "./AddElementButton";
 
-type ControlButton = {
+export type ControlButton = {
   icon: JSX.Element;
   label: string;
   type: string;
