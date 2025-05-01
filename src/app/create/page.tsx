@@ -2,14 +2,11 @@
 import ElementAdder from "@/components/ElementAdder";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import { useState } from "react";
+import { formAtom } from "@/store/formAtom";
+import { useAtom } from "jotai";
 
 export default function Create() {
-  const [formData, setFormData] = useState({
-    title: "Form title",
-    description: "Form description",
-    elements: [],
-  });
+  const [formData, setFormData] = useAtom(formAtom);
   return (
     <section className="flex justify-between gap-4 py-20 px-36 w-full min-h-screen">
       <ElementAdder />
@@ -37,11 +34,16 @@ export default function Create() {
             }}
           />
         </div>
-        <div className="p-16 text-center text-gray-500 border-t-1">
-          <span>
-            No elements added. Use the panel on the left to add form elements.
-          </span>
-        </div>
+
+        {/* Display message if there are no elements initially */}
+        {!formData?.elements?.length && (
+          <div className="p-16 text-center text-gray-500 border-t-1">
+            <span>
+              No elements added. Use the panel on the left to add form elements.
+            </span>
+          </div>
+        )}
+
         {/* Form elements */}
         <div className="flex gap-2 items-start py-8 px-6 border-t-1">
           {/* Sorter */}

@@ -17,7 +17,7 @@ export type FormData = {
 };
 
 export const formAtom = atom<FormData>({
-  title: "",
-  description: "",
+  title: "Form Title",
+  description: "Description",
   elements: [],
 });
