@@ -1,5 +1,14 @@
+import { JSX } from "react";
+import AddElementButton from "./AddElementButton";
+
+type ControlButton = {
+  icon: JSX.Element;
+  label: string;
+  type: string;
+};
+
 export default function ElementAdder() {
-  const controlButtons = [
+  const controlButtons: ControlButton[] = [
     {
       icon: (
         <svg
@@ -26,6 +35,7 @@ export default function ElementAdder() {
         </svg>
       ),
       label: "Text",
+      type: "TEXT",
     },
     {
       icon: (
@@ -47,6 +57,7 @@ export default function ElementAdder() {
         </svg>
       ),
       label: "Paragraph",
+      type: "PARAPGRAPH",
     },
     {
       icon: (
@@ -69,6 +80,7 @@ export default function ElementAdder() {
         </svg>
       ),
       label: "Checkbox",
+      type: "CHECKBOX",
     },
     {
       icon: (
@@ -85,6 +97,7 @@ export default function ElementAdder() {
         </svg>
       ),
       label: "Select",
+      type: "SELECT",
     },
   ];
 
@@ -94,17 +107,9 @@ export default function ElementAdder() {
         <h2 className="font-semibold">Add Form Elements</h2>
       </div>
       <div className="flex flex-wrap gap-2.5 mt-4">
-        {controlButtons?.map((button, index) => {
-          return (
-            <button
-              key={index}
-              className="flex flex-col cursor-pointer transition duration-300 ease-in-out hover:bg-purple-50 w-[calc(50%-5px)] items-center justify-center gap-2 p-4 rounded-md shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
-            >
-              {button.icon}
-              <span>{button.label}</span>
-            </button>
-          );
-        })}
+        {controlButtons?.map((button, index) => (
+          <AddElementButton key={index} button={button} />
+        ))}
       </div>
     </div>
   );
