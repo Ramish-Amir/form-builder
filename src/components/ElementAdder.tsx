@@ -57,7 +57,7 @@ export default function ElementAdder() {
         </svg>
       ),
       label: "Paragraph",
-      type: "PARAPGRAPH",
+      type: "PARAGRAPH",
     },
     {
       icon: (
