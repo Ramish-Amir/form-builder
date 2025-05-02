@@ -55,7 +55,7 @@ export default function FormQuestion({
     setFormData((prevForm) => {
       const updatedElements = [...prevForm?.elements];
       updatedElements?.[index]?.options?.push(
-        `Option ${updatedElements[index].options?.length! + 1}`
+        `Option ${updatedElements[index].options?.length + 1}`
       );
 
       return { ...prevForm, elements: updatedElements };
