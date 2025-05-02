@@ -10,7 +10,7 @@ export default function FormQuestion({
   formElement: FormElement;
   index: number;
 }) {
-  const [, setFormData] = useAtom(formAtom);
+  const [formData, setFormData] = useAtom(formAtom);
 
   const handleQuestionInputChange = (
     name: string,
@@ -75,7 +75,10 @@ export default function FormQuestion({
       <div className="flex gap-2 items-start py-8 px-6 border-t-1">
         {/* Sorter */}
         <div className="">
-          <button className="p-1 rounded-sm hover:bg-gray-300 cursor-pointer">
+          <button
+            disabled={index === 0}
+            className="p-1 rounded-sm hover:bg-gray-300 cursor-pointer"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -92,7 +95,7 @@ export default function FormQuestion({
               />
             </svg>
           </button>
-          <button className="p-1 rounded-sm hover:bg-gray-300 cursor-pointer">
+          <button disabled={index === formData?.elements?.length - 1} className="p-1 rounded-sm hover:bg-gray-300 cursor-pointer">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
