@@ -70,6 +70,20 @@ export default function FormQuestion({
     });
   };
 
+  const handleChangeOrder = (newIndex: number) => {
+    setFormData((prevForm) => {
+      const updatedElements = [...prevForm.elements];
+
+      // Swapping positions
+      [updatedElements[index], updatedElements[newIndex]] = [
+        updatedElements[newIndex],
+        updatedElements[index],
+      ];
+
+      return { ...prevForm, elements: updatedElements };
+    });
+  };
+
   return (
     <>
       <div className="flex gap-2 items-start py-8 px-6 border-t-1">
@@ -77,7 +91,10 @@ export default function FormQuestion({
         <div className="">
           <button
             disabled={index === 0}
-            className="p-1 rounded-sm hover:bg-gray-300 cursor-pointer"
+            onClick={() => handleChangeOrder(index - 1)}
+            className={`p-1 rounded-sm ${
+              index !== 0 ? "hover:bg-gray-300 cursor-pointer" : ""
+            }`}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +104,7 @@ export default function FormQuestion({
             >
               <path
                 fill="none"
-                stroke="currentColor"
+                stroke={index !== 0 ? "currentColor" : "gray"}
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
@@ -95,7 +112,15 @@ export default function FormQuestion({
               />
             </svg>
           </button>
-          <button disabled={index === formData?.elements?.length - 1} className="p-1 rounded-sm hover:bg-gray-300 cursor-pointer">
+          <button
+            disabled={index === formData?.elements?.length - 1}
+            onClick={() => handleChangeOrder(index + 1)}
+            className={`p-1 rounded-sm ${
+              index !== formData.elements.length - 1
+                ? "hover:bg-gray-300 cursor-pointer"
+                : ""
+            } `}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -104,7 +129,11 @@ export default function FormQuestion({
             >
               <path
                 fill="none"
-                stroke="currentColor"
+                stroke={
+                  index !== formData.elements.length - 1
+                    ? "currentColor"
+                    : "gray"
+                }
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 strokeWidth="2"
