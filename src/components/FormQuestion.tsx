@@ -2,6 +2,7 @@ import { formAtom, FormElement } from "@/store/formAtom";
 import { useAtom } from "jotai";
 import { Checkbox } from "./ui/checkbox";
 import { Button } from "./ui/button";
+import { useEffect } from "react";
 
 export default function FormQuestion({
   formElement,
@@ -54,9 +55,10 @@ export default function FormQuestion({
   const handleAddOption = () => {
     setFormData((prevForm) => {
       const updatedElements = [...prevForm?.elements];
-      updatedElements?.[index]?.options?.push(
-        `Option ${updatedElements[index].options?.length + 1}`
-      );
+      updatedElements[index] = {
+        ...updatedElements[index],
+        options: [...updatedElements[index]?.options!, "New option"],
+      };
 
       return { ...prevForm, elements: updatedElements };
     });
@@ -65,7 +67,14 @@ export default function FormQuestion({
   const handleDeleteOption = (optionIndex: number) => {
     setFormData((prevForm) => {
       const updatedElements = [...prevForm?.elements];
-      updatedElements?.[index]?.options?.splice(optionIndex, 1);
+      const updatedOptions = updatedElements[index].options!.filter(
+        (_, i) => i !== optionIndex
+      );
+
+      updatedElements[index] = {
+        ...updatedElements[index],
+        options: updatedOptions,
+      };
       return { ...prevForm, elements: updatedElements };
     });
   };
