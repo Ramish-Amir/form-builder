@@ -2,7 +2,6 @@ import { formAtom, FormElement } from "@/store/formAtom";
 import { useAtom } from "jotai";
 import { Checkbox } from "./ui/checkbox";
 import { Button } from "./ui/button";
-import { useEffect } from "react";
 
 export default function FormQuestion({
   formElement,
