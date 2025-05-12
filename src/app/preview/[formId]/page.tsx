@@ -1,6 +1,5 @@
-"use client";
 import FormPreviewer from "@/components/FormPreviewer";
 
-export default function Preview() {
+export default function FormPreviewPage() {
   return <FormPreviewer />;
 }

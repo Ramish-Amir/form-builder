@@ -1,5 +1,5 @@
 import FormEditor from "@/components/FormEditor";
 
-export default function Create() {
+export default function EditForm() {
   return <FormEditor />;
 }
