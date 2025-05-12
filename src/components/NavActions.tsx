@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -10,6 +10,7 @@ import { saveForm } from "@/services/formsService";
 
 export default function NavActions() {
   const pathname = usePathname();
+  const router = useRouter();
   const [formData] = useAtom(formAtom);
 
   const [isHomePage, setIsHomagePage] = useState(true);
@@ -21,7 +22,8 @@ export default function NavActions() {
   }
 
   const handleSaveForm = () => {
-    saveForm(formData);
+    const newForm = saveForm(formData);
+    router.push(`/preview/${newForm.id}`);
   };
 
   return (

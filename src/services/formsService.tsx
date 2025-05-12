@@ -20,23 +20,29 @@ export const getAllForms = () => {
 export const saveForm = (formData: FormData) => {
   const forms = getAllForms();
 
+  let newForm = { ...formData, updatedAt: new Date() };
+
   if (formData.id) {
     // Update the existing form
     forms.forEach((form: FormData, index: number) => {
       if (form.id === formData.id) {
-        forms[index] = { ...formData, updatedAt: new Date() };
+        forms[index] = newForm;
       }
     });
   } else {
     // Add the new form to the list of forms
-    forms.push({
-      ...formData,
+    const currentTime = new Date();
+    newForm = {
+      ...newForm,
       id: Date.now(),
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
+      createdAt: currentTime,
+      updatedAt: currentTime,
+    };
+    forms.push(newForm);
   }
   localStorage.setItem("forms", JSON.stringify(forms));
+
+  return newForm;
 };
 
 export const deleteForm = (id: number) => {
