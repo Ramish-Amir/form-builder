@@ -1,3 +1,6 @@
+import FormDisplayItem from "./FormDisplayItem";
+import { Button } from "./ui/button";
+
 export default function AllForms() {
   return (
     <>
@@ -16,6 +19,12 @@ export default function AllForms() {
           </div>
         </div>
       </section>
+
+      <ol className="w-full">
+        <FormDisplayItem />
+        <FormDisplayItem />
+        <FormDisplayItem />
+      </ol>
     </>
   );
 }
