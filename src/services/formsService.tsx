@@ -19,19 +19,22 @@ export const getAllForms = () => {
 
 export const saveForm = (formData: FormData) => {
   const forms = getAllForms();
-  const newForm = { ...formData, id: Date.now(), updatedAt: new Date() };
-  // Check if the form already exists
-  const formExists = forms.some((form: FormData) => form.id === newForm.id);
-  if (formExists) {
+
+  if (formData.id) {
     // Update the existing form
     forms.forEach((form: FormData, index: number) => {
-      if (form.id === newForm.id) {
-        forms[index] = { ...form, ...newForm };
+      if (form.id === formData.id) {
+        forms[index] = { ...formData, updatedAt: new Date() };
       }
     });
   } else {
     // Add the new form to the list of forms
-    forms.push({ ...newForm, createdAt: new Date() });
+    forms.push({
+      ...formData,
+      id: Date.now(),
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    });
   }
   localStorage.setItem("forms", JSON.stringify(forms));
 };

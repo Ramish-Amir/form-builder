@@ -29,7 +29,7 @@ export default function FormPreviewer() {
             name="title"
             placeholder="Form title"
             className="w-full text-3xl font-bold active:outline-none focus:outline-none focus:ring-0"
-            value={formData.title}
+            value={formData?.title}
             onChange={(e) => {
               setFormData({ ...formData, title: e.target.value });
             }}
@@ -41,7 +41,7 @@ export default function FormPreviewer() {
             name="description"
             placeholder="Form description"
             className="w-full text-gray-500 active:outline-none focus:outline-none focus:ring-0"
-            value={formData.description}
+            value={formData?.description}
             onChange={(e) => {
               setFormData({ ...formData, description: e.target.value });
             }}
