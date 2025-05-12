@@ -4,7 +4,7 @@ import FormQuestion from "@/components/FormQuestion";
 import { getFormById } from "@/services/formsService";
 import { formAtom } from "@/store/formAtom";
 import { useAtom } from "jotai";
-import { useParams, usePathname, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useEffect } from "react";
 
 export default function FormEditor() {
