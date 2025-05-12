@@ -11,6 +11,9 @@ export type FormElement = {
 };
 
 export type FormData = {
+  id?: number;
+  createdAt?: Date;
+  updatedAt?: Date;
   title: string;
   description: string;
   elements: FormElement[];

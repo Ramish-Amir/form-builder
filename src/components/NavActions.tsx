@@ -4,9 +4,13 @@ import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useAtom } from "jotai";
+import { formAtom } from "@/store/formAtom";
+import { saveForm } from "@/services/formsService";
 
 export default function NavActions() {
   const pathname = usePathname();
+  const [formData, setFormData] = useAtom(formAtom);
 
   const [isHomePage, setIsHomagePage] = useState(true);
 
@@ -16,9 +20,13 @@ export default function NavActions() {
     return null;
   }
 
+  const handleSaveForm = () => {
+    saveForm(formData);
+  };
+
   return (
     <div className="flex gap-1 justify-between items-center">
-      <Button variant={"outline"}>
+      <Button variant={"outline"} onClick={handleSaveForm}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

@@ -1,7 +1,20 @@
+"use client";
+
+import { useEffect, useState } from "react";
 import FormDisplayItem from "./FormDisplayItem";
-import { Button } from "./ui/button";
+import { getAllForms } from "@/services/formsService";
 
 export default function AllForms() {
+  const [forms, setForms] = useState([]);
+
+  useEffect(() => {
+    // Fetch forms from local storage or API
+    const savedForms = getAllForms();
+    if (savedForms) {
+      setForms(savedForms);
+    }
+  }, []);
+
   return (
     <>
       <h2 className="text-3xl font-bold text-center tracking-[-.05em] font-[family-name:var(--font-geist-mono)]">
@@ -21,9 +34,9 @@ export default function AllForms() {
       </section>
 
       <ol className="w-full">
-        <FormDisplayItem />
-        <FormDisplayItem />
-        <FormDisplayItem />
+        {forms.map((form, index) => (
+          <FormDisplayItem key={index} />
+        ))}
       </ol>
     </>
   );
