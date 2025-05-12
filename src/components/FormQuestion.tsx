@@ -56,7 +56,7 @@ export default function FormQuestion({
       const updatedElements = [...prevForm?.elements];
       updatedElements[index] = {
         ...updatedElements[index],
-        options: [...updatedElements[index]?.options!, "New option"],
+        options: [...updatedElements[index].options!, "New option"],
       };
 
       return { ...prevForm, elements: updatedElements };

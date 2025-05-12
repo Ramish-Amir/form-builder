@@ -9,7 +9,7 @@ export default function FormAnswer({
   formElement: FormElement;
   index: number;
 }) {
-  const [formData, setFormData] = useAtom(formAtom);
+  const [, setFormData] = useAtom(formAtom);
 
   const handleQuestionInputChange = (
     name: string,

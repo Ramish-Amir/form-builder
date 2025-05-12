@@ -1,24 +1,23 @@
+import { FormData } from "@/store/formAtom";
 import { Button } from "./ui/button";
+import { deleteForm } from "@/services/formsService";
 
-export default function FormDisplayItem() {
+type FormDisplayItemProps = {
+  form: FormData;
+};
+
+export default function FormDisplayItem({ form }: FormDisplayItemProps) {
+  const handleDeleteForm = () => {
+    if (confirm("Are you sure you want to delete this form?")) {
+      if (form.id) {
+        deleteForm(form.id);
+      }
+    }
+  };
+
   return (
     <li className="flex justify-between group w-full mb-3 items-center gap-4 p-2 rounded-md bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] ">
       <div className="flex justify-start items-center gap-1 text-purple-500 font-[family-name:var(--font-geist-sans)]">
-        {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-        >
-          <path
-            fill="currentColor"
-            d="m18.78 11.37l-4.78-6a1 1 0 0 0-1.41-.15a1 1 0 0 0-.15 1.41L16.71 12l-4.48 5.37a1 1 0 0 0 .13 1.41A1 1 0 0 0 13 19a1 1 0 0 0 .77-.36l5-6a1 1 0 0 0 .01-1.27"
-          />
-          <path
-            fill="currentColor"
-            d="M7 5.37a1 1 0 0 0-1.61 1.26L9.71 12l-4.48 5.36a1 1 0 0 0 .13 1.41A1 1 0 0 0 6 19a1 1 0 0 0 .77-.36l5-6a1 1 0 0 0 0-1.27Z"
-          />
-        </svg> */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="20"
@@ -30,7 +29,7 @@ export default function FormDisplayItem() {
             d="M2 5v14c0 .86 1.012 1.318 1.659.753l8-7a1 1 0 0 0 0-1.506l-8-7C3.012 3.682 2 4.141 2 5m11 0v14c0 .86 1.012 1.318 1.659.753l8-7a1 1 0 0 0 0-1.506l-8-7C14.012 3.682 13 4.141 13 5"
           />
         </svg>
-        <span className="text-gray-600">My first form title</span>
+        <span className="text-gray-600">{form?.title}</span>
       </div>
       <div className="flex justify-evenly items-center gap-1 group-hover:opacity-100 opacity-0 transition-all duration-200">
         <Button
@@ -80,6 +79,7 @@ export default function FormDisplayItem() {
           </svg>
         </Button>
         <Button
+          onClick={handleDeleteForm}
           variant={"outline"}
           className="text-red-500 hover:text-red-600 hover:bg-red-50 border-red-300 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
         >

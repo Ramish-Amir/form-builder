@@ -35,7 +35,7 @@ export default function AllForms() {
 
       <ol className="w-full">
         {forms.map((form, index) => (
-          <FormDisplayItem key={index} />
+          <FormDisplayItem key={index} form={form} />
         ))}
       </ol>
     </>

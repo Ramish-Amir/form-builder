@@ -35,3 +35,14 @@ export const saveForm = (formData: FormData) => {
   }
   localStorage.setItem("forms", JSON.stringify(forms));
 };
+
+export const deleteForm = (id: number) => {
+  const forms = getAllForms();
+  const updatedForms = forms.filter((form: FormData) => form.id !== id);
+  localStorage.setItem("forms", JSON.stringify(updatedForms));
+};
+
+export const getFormById = (id: number) => {
+  const forms = getAllForms();
+  return forms.find((form: FormData) => form.id === id);
+};

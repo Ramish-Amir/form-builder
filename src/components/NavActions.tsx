@@ -10,7 +10,7 @@ import { saveForm } from "@/services/formsService";
 
 export default function NavActions() {
   const pathname = usePathname();
-  const [formData, setFormData] = useAtom(formAtom);
+  const [formData] = useAtom(formAtom);
 
   const [isHomePage, setIsHomagePage] = useState(true);
 
