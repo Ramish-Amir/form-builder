@@ -11,7 +11,6 @@ export default function AllForms() {
   const [storedFormsLength] = useAtom(storedFormsLengthAtom);
 
   useEffect(() => {
-    console.log("storedFormsLength", storedFormsLength);
     // Fetch forms from local storage or API
     const savedForms = getAllForms();
     if (savedForms) {
