@@ -40,3 +40,25 @@ export const initialQuestions = {
   CHECKBOX: initialCheckboxQuestion,
   SELECT: initialSelectQuestion,
 };
+
+export const getFormattedDate = (date: Date) => {
+  // Return just time if date is today, else return full date (with month name instead of number)
+  const today = new Date();
+  const validDate = new Date(date);
+  const isToday =
+    validDate.getDate() === today.getDate() &&
+    validDate.getMonth() === today.getMonth() &&
+    validDate.getFullYear() === today.getFullYear();
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+  };
+  const formattedDate = validDate.toLocaleDateString("en-US", options);
+  return isToday
+    ? formattedDate.split(", ")[1]
+    : formattedDate.replace(/, /g, " ");
+};
