@@ -1,18 +1,22 @@
 import { FormData } from "@/store/formAtom";
 import { Button } from "./ui/button";
-import { deleteForm } from "@/services/formsService";
+import { deleteForm, getAllForms } from "@/services/formsService";
 import Link from "next/link";
 import { getFormattedDate } from "@/lib/utils";
+import { useAtom } from "jotai";
+import { storedFormsLengthAtom } from "@/store/storedFormsAtom";
 
 type FormDisplayItemProps = {
   form: FormData;
 };
 
 export default function FormDisplayItem({ form }: FormDisplayItemProps) {
+  const [, setStoredFormsLength] = useAtom(storedFormsLengthAtom);
   const handleDeleteForm = () => {
     if (confirm("Are you sure you want to delete this form?")) {
       if (form.id) {
         deleteForm(form.id);
+        setStoredFormsLength(getAllForms().length);
       }
     }
   };

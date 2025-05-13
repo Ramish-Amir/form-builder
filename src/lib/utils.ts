@@ -42,7 +42,7 @@ export const initialQuestions = {
 };
 
 export const getFormattedDate = (date: Date) => {
-  // Return just time if date is today, else return full date (with month name instead of number)
+  // Return 'today at <time>' if date is today, else return full date (with month name instead of number)
   const today = new Date();
   const validDate = new Date(date);
   const isToday =
@@ -55,10 +55,13 @@ export const getFormattedDate = (date: Date) => {
     day: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-    second: "2-digit",
   };
   const formattedDate = validDate.toLocaleDateString("en-US", options);
+  const formattedTime = validDate.toLocaleTimeString("en-US", {
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   return isToday
-    ? formattedDate.split(", ")[1]
+    ? `Today at ${formattedTime}`
     : formattedDate.replace(/, /g, " ");
 };

@@ -2,7 +2,7 @@
 import ElementAdder from "@/components/ElementAdder";
 import FormQuestion from "@/components/FormQuestion";
 import { getFormById } from "@/services/formsService";
-import { formAtom } from "@/store/formAtom";
+import { defaultFormData, formAtom } from "@/store/formAtom";
 import { useAtom } from "jotai";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
@@ -15,6 +15,8 @@ export default function FormEditor() {
     if (params.formId) {
       const form = getFormById(parseInt(params.formId as string));
       setFormData(form);
+    } else {
+      setFormData(defaultFormData);
     }
   }, [params]);
 

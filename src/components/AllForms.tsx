@@ -3,17 +3,21 @@
 import { useEffect, useState } from "react";
 import FormDisplayItem from "./FormDisplayItem";
 import { getAllForms } from "@/services/formsService";
+import { useAtom } from "jotai";
+import { storedFormsLengthAtom } from "@/store/storedFormsAtom";
 
 export default function AllForms() {
   const [forms, setForms] = useState([]);
+  const [storedFormsLength] = useAtom(storedFormsLengthAtom);
 
   useEffect(() => {
+    console.log("storedFormsLength", storedFormsLength);
     // Fetch forms from local storage or API
     const savedForms = getAllForms();
     if (savedForms) {
       setForms(savedForms);
     }
-  }, []);
+  }, [storedFormsLength]);
 
   return (
     <>

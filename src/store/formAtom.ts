@@ -19,8 +19,10 @@ export type FormData = {
   elements: FormElement[];
 };
 
-export const formAtom = atom<FormData>({
+export const defaultFormData: FormData = {
   title: "Form Title",
   description: "Description",
   elements: [],
-});
+};
+
+export const formAtom = atom<FormData>(defaultFormData);
