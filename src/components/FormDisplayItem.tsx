@@ -3,15 +3,12 @@ import { Button } from "./ui/button";
 import { deleteForm } from "@/services/formsService";
 import Link from "next/link";
 import { getFormattedDate } from "@/lib/utils";
-import { useState } from "react";
 
 type FormDisplayItemProps = {
   form: FormData;
 };
 
 export default function FormDisplayItem({ form }: FormDisplayItemProps) {
-  const [isHovered, setIsHovered] = useState(false);
-
   const handleDeleteForm = () => {
     if (confirm("Are you sure you want to delete this form?")) {
       if (form.id) {
@@ -21,11 +18,7 @@ export default function FormDisplayItem({ form }: FormDisplayItemProps) {
   };
 
   return (
-    <li
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-      className="flex justify-between group w-full mb-3 items-center gap-4 p-2 rounded-md bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] "
-    >
+    <li className="flex justify-between group w-full mb-3 items-center gap-4 p-2 rounded-md bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] ">
       <div className="flex justify-start items-center gap-1 text-purple-500 font-[family-name:var(--font-geist-sans)]">
         <svg
           xmlns="http://www.w3.org/2000/svg"
