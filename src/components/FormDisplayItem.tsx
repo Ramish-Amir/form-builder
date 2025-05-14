@@ -5,22 +5,13 @@ import Link from "next/link";
 import { getFormattedDate } from "@/lib/utils";
 import { useAtom } from "jotai";
 import { storedFormsLengthAtom } from "@/store/storedFormsAtom";
+import { DeleteAlert } from "./DeleteAlert";
 
 type FormDisplayItemProps = {
   form: FormData;
 };
 
 export default function FormDisplayItem({ form }: FormDisplayItemProps) {
-  const [, setStoredFormsLength] = useAtom(storedFormsLengthAtom);
-  const handleDeleteForm = () => {
-    if (confirm("Are you sure you want to delete this form?")) {
-      if (form.id) {
-        deleteForm(form.id);
-        setStoredFormsLength(getAllForms().length);
-      }
-    }
-  };
-
   return (
     <li className="flex justify-between group w-full mb-3 items-center gap-4 p-2 rounded-md bg-white shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)] ">
       <div className="flex justify-start items-center gap-1 text-purple-500 font-[family-name:var(--font-geist-sans)]">
@@ -56,7 +47,7 @@ export default function FormDisplayItem({ form }: FormDisplayItemProps) {
           </svg>
           {`${getFormattedDate(form.updatedAt!)}`}
         </span>
-        <div className="flex justify-evenly items-center gap-1 overflow-hidden w-0 group-hover:w-[134px] transition-all duration-400">
+        <div className="flex justify-evenly items-center gap-1 overflow-hidden w-0 group-hover:w-[134px] transition-all duration-500">
           <Link href={`/preview/${form.id}`}>
             <Button
               variant={"outline"}
@@ -108,7 +99,7 @@ export default function FormDisplayItem({ form }: FormDisplayItemProps) {
               </svg>
             </Button>
           </Link>
-          <Button
+          {/* <Button
             onClick={handleDeleteForm}
             variant={"outline"}
             className="text-red-500 hover:text-red-600 hover:bg-red-50 border-red-300 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"
@@ -124,7 +115,8 @@ export default function FormDisplayItem({ form }: FormDisplayItemProps) {
                 d="M7 21q-.825 0-1.412-.587T5 19V6q-.425 0-.712-.288T4 5t.288-.712T5 4h4q0-.425.288-.712T10 3h4q.425 0 .713.288T15 4h4q.425 0 .713.288T20 5t-.288.713T19 6v13q0 .825-.587 1.413T17 21zM17 6H7v13h10zm-7 11q.425 0 .713-.288T11 16V9q0-.425-.288-.712T10 8t-.712.288T9 9v7q0 .425.288.713T10 17m4 0q.425 0 .713-.288T15 16V9q0-.425-.288-.712T14 8t-.712.288T13 9v7q0 .425.288.713T14 17M7 6v13z"
               />
             </svg>
-          </Button>
+          </Button> */}
+          <DeleteAlert id={form.id!} />
         </div>
       </div>
     </li>
