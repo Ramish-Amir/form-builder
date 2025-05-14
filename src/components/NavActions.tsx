@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { useParams, usePathname, useRouter } from "next/navigation";
 import { Button } from "./ui/button";
 import { useEffect, useState } from "react";
 import Link from "next/link";
@@ -11,6 +11,7 @@ import { saveForm } from "@/services/formsService";
 export default function NavActions() {
   const pathname = usePathname();
   const router = useRouter();
+  const params = useParams();
   const [formData] = useAtom(formAtom);
 
   const [isHomePage, setIsHomagePage] = useState(true);
@@ -49,13 +50,15 @@ export default function NavActions() {
         </svg>
         Save
       </Button>
-      {pathname === "/create" && (
-        <Link href={"/preview"}>
+      {(pathname === "/create" || pathname.includes("edit")) && (
+        <Link
+          href={`${params.formId ? "/preview/" + params.formId : "/preview/"}`}
+        >
           <Button variant={"outline"}>Preview Form</Button>
         </Link>
       )}
-      {pathname === "/preview" && (
-        <Link href={"/create"}>
+      {pathname.includes("/preview") && (
+        <Link href={`${params.formId ? "/edit/" + params.formId : "/create/"}`}>
           <Button
             variant={"outline"}
             className="border-1 border-purple-400 text-purple-600"
